@@ -1,3 +1,4 @@
-local modules = require("./src/beta.lua")
-
-print(modules[1])
+local placeId = game.GameId
+if placeId == 648454481 then --gpo
+	loadstring(game:HttpGet(""))()
+end
