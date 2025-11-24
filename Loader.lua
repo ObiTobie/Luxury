@@ -25,10 +25,7 @@ type array<I,V> = {[I]: V}
 local __f : array<string, any> = {
     ['__game'] = function() : string
         local g : number = game.GameId
-        if g == 648454481 then 
-            return "Kaitan" -- Grand Piece Kaitan
-        else
-            return "lmao"
+            return g
         end
     end;
     ['__load'] = function(s : string) : nil (load or loadstring)(game:HttpGet(s))() end;
@@ -100,11 +97,29 @@ if not(getgenv().run_time) then
     ---------/// Load Scripts ///---------
 
     local tar : any = nil;
-    tar = __f['__game'](); 
-    print(tar)
-    if tar ~= "lmao" then
-        __f['__load'](`https://github.com/ObiTobie/Luxury/blob/main/src/{tar}.lua?raw=true`) 
+    local typescr : string = nil;
+    tar = __f['__game']();
+    if tar then
+        if Kaitan then
+            typescr = "Kaitan"
+        else
+            typescr = "Normal"
+        end
+
+        print(typescr)
+
+        local url = `https://github.com/ObiTobie/Luxury/blob/main/{typescr}/{tar}.lua?raw=true`
+
+        local success, response = pcall(function()
+            return game:HttpGet(url)
+        end)
+
+        if success and not response:find("404") then
+            __f['__load'](url)
+        else
+            Client:Kick("ลูกหรี่ชอบโง่รันผิดแมพ")
+        end
     else
-        Client:Kick("ลูกหรี่ชอบโง่รันผิดแมพ")
+        Client:Kick("???")
     end
 end
