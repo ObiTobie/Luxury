@@ -16,6 +16,7 @@ if not game:IsLoaded() then game.Loaded:Wait() end
 local _cloneref							= cloneref or function(func) return func end
 local Services							= setmetatable({}, { __index = function(Self, Key) return _cloneref(game.GetService(game, Key)) end })
 local Client							= Services.Players.LocalPlayer
+local GameID							= game.GameId
 
 type array<I,V> = {[I]: V}
 
@@ -100,8 +101,9 @@ if not(getgenv().run_time) then
 
     local tar : any = nil;
     tar = __f['__game'](); 
-    if tar ~= "ลูกหรี่ชอบโง่รันผิดแมพ" then
-        __f['__load'](`https://github.com/ObiTobie/Luxury/blob/main/src/{tar}?raw=true`) 
+    print(tar)
+    if tar ~= "lmao" then
+        __f['__load'](`https://github.com/ObiTobie/Luxury/blob/main/src/{tar}.lua?raw=true`) 
     else
         Client:Kick("ลูกหรี่ชอบโง่รันผิดแมพ")
     end
