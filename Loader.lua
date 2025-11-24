@@ -25,8 +25,7 @@ type array<I,V> = {[I]: V}
 local __f : array<string, any> = {
     ['__game'] = function() : string
         local g : number = game.GameId
-            return g
-        end
+        return g
     end;
     ['__load'] = function(s : string) : nil (load or loadstring)(game:HttpGet(s))() end;
     ['__ismobile'] = function() : boolean
@@ -106,9 +105,7 @@ if not(getgenv().run_time) then
             typescr = "Normal"
         end
 
-        print(typescr)
-
-        local url = `https://github.com/ObiTobie/Luxury/blob/main/{typescr}/{tar}.lua?raw=true`
+        local url = `https://github.com/ObiTobie/Luxury/blob/main/src/{typescr}/{tar}.lua?raw=true`
 
         local success, response = pcall(function()
             return game:HttpGet(url)
